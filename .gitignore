@@ -1,0 +1,6 @@
+data/
+output*/
+*.mat
+*.pkl
+__pycache__/
+.DS_Store
