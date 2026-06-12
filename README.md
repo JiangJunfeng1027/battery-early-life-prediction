@@ -71,3 +71,8 @@ This is a workflow-level reconstruction on same-platform public data, not a cell
 ## License
 
 This repository is released under the MIT License.
+
+## Mechanism figures
+
+The v2 draft adds mechanism-figure generation scripts under `mechanism_figures/`.
+See [`mechanism_figures/README.md`](mechanism_figures/README.md) for usage notes.
