@@ -1,13 +1,13 @@
 """Frequency-band importance of EIS for ageing information. Publication style."""
-import numpy as np, matplotlib
+import numpy as np, matplotlib, os
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
 from scipy.stats import spearmanr
 
 ROOT = "."
-ASSETS = "./figures_out"
-PREV = "./figures_out"
+ASSETS = "."
+PREV = "."
 
 for f in font_manager.findSystemFonts(fontpaths=None, fontext="otf"):
     if "texgyretermes" in f.lower().replace("-", ""):
@@ -20,7 +20,7 @@ plt.rcParams.update({
     "xtick.color": "#3c4540", "ytick.color": "#3c4540",
     "axes.labelcolor": "#1f2723", "text.color": "#1f2723",
 })
-GREEN, AMBER, RED = "#2e7d52", "#d97a1f", "#b3422e"
+GREEN, AMBER, RED = "#55606A", "#B42B40", "#7E1E2C"  # EIS house palette: slate Re, crimson Im, dark-red literature lines
 
 z = np.load(ROOT + "/tmp/natcomm2022_capacity_vs_eis/variable_discharge_features.npz",
             allow_pickle=True)
@@ -33,9 +33,9 @@ print("peak Im:", freq[rho_im.argmax()], rho_im.max())
 
 fig, ax = plt.subplots(figsize=(7.8, 4.7), dpi=200)
 # physical regions
-ax.axvspan(freq[0], 1.0, color="#7d6aa8", alpha=0.07)
-ax.axvspan(1.0, 200.0, color=GREEN, alpha=0.08)
-ax.axvspan(200.0, freq[-1], color="#5a87b0", alpha=0.07)
+ax.axvspan(freq[0], 1.0, color="#8a8f94", alpha=0.10)
+ax.axvspan(1.0, 200.0, color="#B42B40", alpha=0.05)
+ax.axvspan(200.0, freq[-1], color="#8a8f94", alpha=0.10)
 for x, lab in ((0.12, "low $f$ · diffusion"), (14, "mid $f$ · charge transfer\n+ interfaces"), (1450, "high $f$ · ohmic\n+ SEI")):
     ax.text(x, 1.005, lab, fontsize=12.5, color="#5a665f", ha="center", va="bottom")
 ax.plot(freq, rho_re, color=GREEN, lw=3.0, label="Re $Z$ ($f$)")
@@ -43,14 +43,14 @@ ax.plot(freq, rho_im, color=AMBER, lw=3.0, label="$-$Im $Z$ ($f$)")
 # Zhang 2020 canonical frequencies
 for fz in (2.16, 17.8):
     ax.axvline(fz, color=RED, lw=1.8, ls=(0, (5, 4)), alpha=0.85)
-ax.annotate("2.16 & 17.8 Hz — the two predictive\nfrequencies identified by\nZhang et al. (2020)",
-            xy=(2.05, 0.115), xytext=(0.16, 0.10),
-            fontsize=13, color=RED, ha="center", va="center", fontweight="bold",
+ax.annotate("2.16 & 17.8 Hz — the two predictive\nfrequencies of Zhang et al. (2020)",
+            xy=(2.05, 0.10), xytext=(0.14, 0.095),
+            fontsize=12.5, color=RED, ha="center", va="center", fontweight="bold",
             arrowprops=dict(arrowstyle="-|>", color=RED, lw=1.5,
                             connectionstyle="arc3,rad=0.12"))
 i_pk = int(rho_im.argmax())
 ax.annotate("ageing information\nconcentrates here",
-            xy=(freq[i_pk], rho_im[i_pk]), xytext=(0.07, 0.83),
+            xy=(freq[i_pk], rho_im[i_pk]), xytext=(0.42, 0.74),
             fontsize=14.5, color="#1f2723", ha="center", fontweight="bold",
             arrowprops=dict(arrowstyle="-|>", color="#3c4540", lw=1.7,
                             connectionstyle="arc3,rad=-0.15"))
@@ -59,9 +59,9 @@ ax.set_xlim(freq[0], freq[-1]); ax.set_ylim(0, 1.0)
 ax.set_xlabel("Frequency (Hz)")
 ax.set_ylabel("|Spearman $\\rho$| with capacity")
 ax.legend(fontsize=13.5, loc="center right", frameon=False)
-ax.set_title("Which frequencies carry ageing information", fontsize=18, pad=30, fontweight="bold")
+
 for s in ("top", "right"): ax.spines[s].set_visible(False)
 fig.tight_layout()
-fig.savefig(ASSETS + "/ppt_eisband.png", facecolor="white"); plt.close(fig)
+fig.savefig(ASSETS + "/34_eis_band_importance__fig5x.png", facecolor="white"); plt.close(fig)
 
 print('DONE')

@@ -76,3 +76,9 @@ This repository is released under the MIT License.
 
 The v2 draft adds mechanism-figure generation scripts under `mechanism_figures/`.
 See [`mechanism_figures/README.md`](mechanism_figures/README.md) for usage notes.
+
+## EIS cohort pilot
+
+The `eis_cohort_check/` directory contains the with/without-EIS cohort comparison (24/24 cells improve) and a four-arm pilot reproducing thesis Figs. 6.5-6.7: four-arm comparison, frequency economy, and campaign holdout.
+See [`eis_cohort_check/README.md`](eis_cohort_check/README.md) for details.
+Input data are not distributed with this repository; acquisition and placement notes are documented in that README.
