@@ -1,4 +1,4 @@
-# Mechanism figures (thesis Figs 3.2, 4.7, 5.3, 5.6 and slide variants)
+# Mechanism figures (thesis Figs 3.2, 4.7, 6.2, 6.6 and slide variants)
 
 Scripts that generate the mechanism-oriented figures added in the v2 draft.
 
