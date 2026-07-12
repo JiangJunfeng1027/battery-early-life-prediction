@@ -86,8 +86,8 @@ def merge_batches(all_batches):
     if 'batch1' not in all_batches:
         return {k: v for d in all_batches.values() for k, v in d.items()}
     batch1 = all_batches['batch1'].copy()
-    for bad in ['b1c8','b1c10','b1c12','b1c13','b1c22']:
-        batch1.pop(bad, None)
+    # The public five-cell exclusion belongs to the 2017-05-12 batch, not this
+    # separately loaded 2018-02-20 batch. Label/window validity is checked later.
     if 'batch2' in all_batches:
         batch2 = all_batches['batch2'].copy()
         b2k = ['b2c7','b2c8','b2c9','b2c15','b2c16']

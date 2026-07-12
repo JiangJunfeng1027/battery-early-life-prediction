@@ -33,7 +33,7 @@ Appendix A.7 verification uses the following original 2017 batch files:
 - `step3_deep_learning.py` — Run exploratory deep-learning baselines using sequence-style representations.
 - `step3_deep_learning_pytorch.py` — Run exploratory PyTorch deep-learning baselines and related diagnostics.
 - `step4_shap_and_early.py` — Run SHAP interpretability analysis, feature-group ablation, and early-window prediction experiments.
-- `step5_full_data.py` — Extend the evaluation to the 75-cell feature matrix and run the broader repeated-CV comparison.
+- `step5_full_data.py` — Extend the evaluation to the 79-cell feature matrix and run the broader repeated-CV comparison.
 - `step6_final_polish.py` — Produce final cross-batch, full-data, and reporting figures used by the dissertation.
 - `step7_fixes.py` — Run final strict out-of-fold diagnostics and Wilcoxon significance checks.
 - `verify_2017_batches.py` — Run an independent 2017 batch verification of the workflow-level baseline behavior.
@@ -42,9 +42,9 @@ Appendix A.7 verification uses the following original 2017 batch files:
 
 | Evaluation setting | Representative result |
 |---|---:|
-| 35-cell matched setting | Discharge-focused elastic net: 8.3% MAPE |
-| 75-cell repeated CV | Gradient Boosting: 10.88% MAPE; Elastic Net: 11.00% MAPE; Wilcoxon p = 0.22 |
-| Cross-batch holdout | Best forward result: about 16.5% MAPE; reverse tree-model errors reach about 50-60% MAPE |
+| 39-cell matched setting | Discharge-focused elastic net: 8.3% MAPE |
+| 79-cell repeated CV | Gradient Boosting: 10.72% MAPE; Elastic Net: 10.91% MAPE; Wilcoxon p = 0.69 |
+| Cross-batch holdout | Best forward result: about 17.5% MAPE; reverse tree-model errors reach about 50-59% MAPE |
 | 2017 batch verification | Full-feature elastic net: 11.4% MAPE; naive baseline: 38.6% MAPE |
 
 This is a workflow-level reconstruction on same-platform public data, not a cell-for-cell replication of the original study. "Batch 1/2" is a code-inherited label for the single 2018-02-20 batch.
@@ -79,6 +79,6 @@ See [`mechanism_figures/README.md`](mechanism_figures/README.md) for usage notes
 
 ## EIS cohort pilot
 
-The `eis_cohort_check/` directory contains the with/without-EIS cohort comparison (24/24 cells improve) and a four-arm pilot reproducing thesis Figs. 6.5-6.7: four-arm comparison, frequency economy, and campaign holdout.
+The `eis_cohort_check/` directory contains the with/without-EIS cohort comparison (24/24 cells improve) and a four-arm pilot reproducing thesis Figs. 6.5-6.7: four-arm comparison, frequency economy, and cell-group holdout.
 See [`eis_cohort_check/README.md`](eis_cohort_check/README.md) for details.
 Input data are not distributed with this repository; acquisition and placement notes are documented in that README.

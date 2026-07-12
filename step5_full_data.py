@@ -118,9 +118,8 @@ for bn, mf in MAT_FILES.items():
 # Merge (same logic as step1)
 def merge_all(batches):
     b1 = batches.get('batch1', {}).copy()
-    # Remove bad cells from batch1
-    for bad in ['b1c8','b1c10','b1c12','b1c13','b1c22']:
-        b1.pop(bad, None)
+    # The public five-cell exclusion belongs to the 2017-05-12 batch, not this
+    # separately loaded 2018-02-20 batch. Label/window validity is checked below.
     
     b2 = batches.get('batch2', {}).copy()
     if b2:
